@@ -1,21 +1,18 @@
 import React from 'react'
-import {HomeContainer, HomeElements, HomeTitle, HomeImageMain, HomeImageSecond, HomeTitleContainer} from './HomeStyles'
-import {AiFillGithub, AiFillLinkedin} from 'react-icons/ai'
-import HomeImageLeft from '../../Images/Homebg1.jpg'
-import HomeImageRight from '../../Images/Homebg2.jpg'
+import {HomeContainer, HomeElements, HomeTitle, HomeTitleContainer, HomeMainTitle} from './HomeStyles'
 
 import {useNavigate} from 'react-router-dom'
 
 function Home() {
+  
   let navigate = useNavigate();
   return (
     <HomeContainer>
       <HomeElements>
-        <HomeImageMain onClick={()=>navigate('/newtask')} src={HomeImageLeft} alt='LeftImageWithBlur'/>
-        <HomeImageSecond onClick={()=>navigate('/currenttasks')} src={HomeImageRight} alt='RightImageWithBlur'/>
+          <HomeMainTitle>TaskTrack</HomeMainTitle>
         <HomeTitleContainer>
-          <HomeTitle>Add a new Task</HomeTitle>
-          <HomeTitle>View Current Tasks</HomeTitle>
+          <HomeTitle onClick={()=>navigate('/newtask')}>Add a new Task</HomeTitle>
+          <HomeTitle onClick={()=>navigate('/currenttasks')}>View Current Tasks</HomeTitle>
         </HomeTitleContainer>
       </HomeElements>
     </HomeContainer>

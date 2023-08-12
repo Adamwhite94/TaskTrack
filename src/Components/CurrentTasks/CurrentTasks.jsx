@@ -1,29 +1,40 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import {CurrentTaskContainer, CurrentTaskElements, CurrentTaskTitle, CurrentTaskGridContainer, CurrentTaskGridElement} from './CurrentTasksStyles'
+import {
+  CurrentTaskContainer,
+  CurrentTaskElements,
+  CurrentTaskTitle,
+  CurrentTaskGridContainer,
+  CurrentTaskGridElement,
+} from "./CurrentTasksStyles";
+import taskStore from "../../Store";
 
 const CurrentTasks = () => {
+  const { tasks, deleteTask,toggleTask } = taskStore((state) => {
+    return { tasks: state.tasks, deleteTask: state.deleteTask, toggleTask: state.toggleTask };
+  });
+
   return (
     <CurrentTaskContainer>
       <CurrentTaskElements>
         <CurrentTaskTitle>These are your current Tasks</CurrentTaskTitle>
-    
-      <CurrentTaskGridContainer>
-        <CurrentTaskGridElement>Test1</CurrentTaskGridElement>
-        <CurrentTaskGridElement>Test2</CurrentTaskGridElement>
-        <CurrentTaskGridElement>Test3</CurrentTaskGridElement>
-        <CurrentTaskGridElement>Test4</CurrentTaskGridElement>
-        <CurrentTaskGridElement>Test5</CurrentTaskGridElement>
-        <CurrentTaskGridElement>Test1</CurrentTaskGridElement>
-        <CurrentTaskGridElement>Test2</CurrentTaskGridElement>
-        <CurrentTaskGridElement>Test3</CurrentTaskGridElement>
-        <CurrentTaskGridElement>Test4</CurrentTaskGridElement>
-        <CurrentTaskGridElement>Test5</CurrentTaskGridElement>
-      </CurrentTaskGridContainer>
-      {/* each grid element will be mapped, containing attributes based on context api */}
 
+        {tasks.map((task) => {
+          return (
+            <CurrentTaskGridContainer key={task.id}>
+              <CurrentTaskGridElement
+                style={{
+                  textDecoration: task.completed ? "line-through" : "none",
+                }}
+                onClick={() => toggleTask(task.id)}
+              >  {task.text}</CurrentTaskGridElement>
+              
+            </CurrentTaskGridContainer>
+            
+          );
+        })}
       </CurrentTaskElements>
-     
+    
       <Outlet />
     </CurrentTaskContainer>
   );
