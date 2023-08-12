@@ -8,24 +8,14 @@ html{
 body{
     padding:0;
     margin:0;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 h1{
-    font-family: 'Lobster', cursive;
     color: #fff;
 }
 
-label{
-    font-family: 'Open Sans', sans-serif;
-}
 
-h3{
-    font-family: 'Open Sans', sans-serif;
-}
-
-button{
-    font-family: 'Open Sans', sans-serif;
-}
 `;
 
 
